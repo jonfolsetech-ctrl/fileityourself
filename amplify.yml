@@ -3,8 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
-        # Create data directory for user storage
+        - nvm install 18
+        - nvm use 18
+        - node --version
+        - npm ci --legacy-peer-deps
         - mkdir -p data
         - echo "[]" > data/users.json
     build:
@@ -18,8 +20,4 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
-  environment:
-    variables:
-      # Node.js version
-      NODE_ENV: production
 

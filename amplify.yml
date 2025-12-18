@@ -4,6 +4,9 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        # Create data directory for user storage
+        - mkdir -p data
+        - echo "[]" > data/users.json
     build:
       commands:
         - npm run build
@@ -15,3 +18,8 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+  environment:
+    variables:
+      # Node.js version
+      NODE_ENV: production
+

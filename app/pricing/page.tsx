@@ -1,4 +1,35 @@
+'use client'
+
+import { useState } from 'react'
+
 export default function Pricing() {
+  const [loading, setLoading] = useState<string | null>(null)
+
+  const handleCheckout = async (priceId: string, planName: string) => {
+    setLoading(planName)
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId, planName }),
+      })
+
+      const data = await response.json()
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        alert('Error creating checkout session')
+        setLoading(null)
+      }
+    } catch (error) {
+      alert('Error creating checkout session')
+      setLoading(null)
+    }
+  }
+
   return (
     <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 2rem' }}>
       <h1 style={{ textAlign: 'center', fontSize: '3rem', marginBottom: '1rem', color: '#1a365d' }}>
@@ -45,22 +76,25 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          <button style={{
+          <button
+            onClick={() => handleCheckout(process.env.NEXT_PUBLIC_STRIPE_BASIC_PRICE_ID || 'price_basic', 'Basic')}
+            disabled={loading !== null}
+            style={{
             width: '100%',
-            background: '#667eea',
+            background: loading === 'Basic' ? '#a0aec0' : '#667eea',
             color: 'white',
             border: 'none',
             padding: '1rem',
             borderRadius: '8px',
             fontSize: '1.1rem',
             fontWeight: 'bold',
-            cursor: 'pointer'
+            cursor: loading === null ? 'pointer' : 'not-allowed'
           }}>
-            Get Started
+            {loading === 'Basic' ? 'Processing...' : 'Get Started'}
           </button>
         </div>
 
-        {/* Pro Plan */}
+        {/* Pro Plan */
         <div style={{
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
@@ -108,22 +142,25 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          <button style={{
+          <button
+            onClick={() => handleCheckout(process.env.NEXT_PUBLIC_STRIPE_PRO_PRICE_ID || 'price_pro', 'Pro')}
+            disabled={loading !== null}
+            style={{
             width: '100%',
-            background: 'white',
+            background: loading === 'Pro' ? '#d1d5db' : 'white',
             color: '#667eea',
             border: 'none',
             padding: '1rem',
             borderRadius: '8px',
             fontSize: '1.1rem',
             fontWeight: 'bold',
-            cursor: 'pointer'
+            cursor: loading === null ? 'pointer' : 'not-allowed'
           }}>
-            Get Started
+            {loading === 'Pro' ? 'Processing...' : 'Get Started'}
           </button>
         </div>
 
-        {/* Premium Plan */}
+        {/* Premium Plan */
         <div style={{
           background: 'white',
           border: '2px solid #f59e0b',
@@ -174,18 +211,21 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          <button style={{
+          <button
+            onClick={() => handleCheckout(process.env.NEXT_PUBLIC_STRIPE_PREMIUM_PRICE_ID || 'price_premium', 'Premium')}
+            disabled={loading !== null}
+            style={{
             width: '100%',
-            background: '#667eea',
+            background: loading === 'Premium' ? '#a0aec0' : '#667eea',
             color: 'white',
             border: 'none',
             padding: '1rem',
             borderRadius: '8px',
             fontSize: '1.1rem',
             fontWeight: 'bold',
-            cursor: 'pointer'
+            cursor: loading === null ? 'pointer' : 'not-allowed'
           }}>
-            Get Started
+            {loading === 'Premium' ? 'Processing...' : 'Get Started'}
           </button>
         </div>
       </div>

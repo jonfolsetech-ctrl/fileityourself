@@ -11,8 +11,14 @@ export default function Portal() {
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login')
+    } else if (status === 'authenticated') {
+      const user = session?.user as any
+      // Redirect admin to admin dashboard
+      if (user?.role === 'admin') {
+        router.push('/admin')
+      }
     }
-  }, [status, router])
+  }, [status, session, router])
 
   if (status === 'loading') {
     return (

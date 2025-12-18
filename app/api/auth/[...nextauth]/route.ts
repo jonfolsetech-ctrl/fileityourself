@@ -15,6 +15,21 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
+        // Check for master admin account
+        if (
+          credentials.email === process.env.MASTER_ADMIN_EMAIL &&
+          credentials.password === process.env.MASTER_ADMIN_PASSWORD
+        ) {
+          return {
+            id: 'master-admin',
+            email: process.env.MASTER_ADMIN_EMAIL!,
+            name: 'Master Admin',
+            plan: 'admin',
+            role: 'admin',
+            stripeCustomerId: null,
+          }
+        }
+
         const users = await readUsers()
         const user = users.find((u: any) => u.email === credentials.email)
 
@@ -33,6 +48,7 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           name: user.name,
           plan: user.plan,
+          role: user.role || 'user',
           stripeCustomerId: user.stripeCustomerId,
         }
       }
@@ -43,6 +59,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id
         token.plan = (user as any).plan
+        token.role = (user as any).role
         token.stripeCustomerId = (user as any).stripeCustomerId
       }
       return token
@@ -51,6 +68,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         (session.user as any).id = token.id;
         (session.user as any).plan = token.plan;
+        (session.user as any).role = token.role;
         (session.user as any).stripeCustomerId = token.stripeCustomerId
       }
       return session

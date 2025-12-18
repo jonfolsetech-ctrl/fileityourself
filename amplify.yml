@@ -3,14 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm install 18
-        - nvm use 18
-        - node --version
         - npm ci --legacy-peer-deps
-        - mkdir -p data
-        - echo "[]" > data/users.json
     build:
       commands:
+        - mkdir -p data
+        - echo "[]" > data/users.json
         - npm run build
   artifacts:
     baseDirectory: .next

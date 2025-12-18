@@ -1,6 +1,21 @@
 # AWS Amplify Deployment Guide
 
-## Required Environment Variables
+## Prerequisites
+
+Before deploying, ensure you have:
+- AWS Amplify account
+- GitHub repository connected to Amplify
+- Stripe account with API keys
+- All environment variables ready
+
+## Step 1: Enable SSR in Amplify
+
+In your Amplify Console:
+1. Go to **App Settings** → **Build settings**
+2. Under **App build specification**, ensure **Next.js SSR** is enabled
+3. If not available, go to **Hosting environment** and select **Amplify Hosting Compute**
+
+## Step 2: Required Environment Variables
 
 Set these in AWS Amplify Console → App Settings → Environment Variables:
 

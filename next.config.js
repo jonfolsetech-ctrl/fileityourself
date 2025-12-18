@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   images: {
     unoptimized: true,
   },
+  // Enable static export for Amplify
+  trailingSlash: true,
 }
 
 module.exports = nextConfig

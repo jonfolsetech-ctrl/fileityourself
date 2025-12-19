@@ -31,16 +31,16 @@ export default function Pricing() {
   }
 
   return (
-    <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 2rem' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '3rem', marginBottom: '1rem', color: '#1a365d' }}>
+    <main style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(1.5rem, 5vw, 3rem) clamp(1rem, 3vw, 2rem)' }}>
+      <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.75rem, 5vw, 3rem)', marginBottom: '1rem', color: '#1a365d' }}>
         Choose Your Plan
       </h1>
-      <p style={{ textAlign: 'center', fontSize: '1.2rem', color: '#718096', marginBottom: '3rem' }}>
+      <p style={{ textAlign: 'center', fontSize: 'clamp(1rem, 3vw, 1.2rem)', color: '#718096', marginBottom: '3rem' }}>
         One-time payment. Lifetime access. No subscriptions.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ background: 'white', border: '2px solid #e2e8f0', borderRadius: '12px', padding: '2rem', textAlign: 'center' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '1.5rem', maxWidth: '1000px', margin: '0 auto', justifyItems: 'center' }}>
+        <div style={{ background: 'white', border: '2px solid #e2e8f0', borderRadius: '12px', padding: 'clamp(1rem, 4vw, 2rem)', textAlign: 'center', width: '100%', maxWidth: '400px' }}>
           <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#1a365d' }}>Basic</h2>
           <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#667eea', marginBottom: '1rem' }}>$49</div>
           <p style={{ color: '#718096', marginBottom: '2rem' }}>Perfect for simple cases</p>
@@ -54,7 +54,14 @@ export default function Pricing() {
           </button>
         </div>
 
-        <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', borderRadius: '12px', padding: '2rem', textAlign: 'center', position: 'relative', transform: 'scale(1.05)', boxShadow: '0 8px 16px rgba(0,0,0,0.2)' }}>
+        <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', borderRadius: '12px', padding: 'clamp(1rem, 4vw, 2rem)', textAlign: 'center', position: 'relative', transform: 'scale(1)', boxShadow: '0 8px 16px rgba(0,0,0,0.2)', width: '100%', maxWidth: '400px' }} className="pro-card">
+          <style jsx>{`
+            @media (min-width: 769px) {
+              .pro-card {
+                transform: scale(1.05) !important;
+              }
+            }
+          `}</style>
           <div style={{ position: 'absolute', top: '-12px', right: '20px', background: '#fbbf24', color: '#1a365d', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>MOST POPULAR</div>
           <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Pro</h2>
           <div style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>$99</div>
@@ -69,7 +76,7 @@ export default function Pricing() {
           </button>
         </div>
 
-        <div style={{ background: 'white', border: '2px solid #f59e0b', borderRadius: '12px', padding: '2rem', textAlign: 'center', position: 'relative' }}>
+        <div style={{ background: 'white', border: '2px solid #f59e0b', borderRadius: '12px', padding: 'clamp(1rem, 4vw, 2rem)', textAlign: 'center', position: 'relative', width: '100%', maxWidth: '400px' }}>
           <div style={{ position: 'absolute', top: '-12px', right: '20px', background: '#ef4444', color: 'white', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>ON SALE</div>
           <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#1a365d' }}>Premium</h2>
           <div style={{ marginBottom: '1rem' }}>
@@ -88,8 +95,8 @@ export default function Pricing() {
         </div>
       </div>
 
-      <section style={{ marginTop: '4rem', maxWidth: '800px', margin: '4rem auto 0' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '2rem', marginBottom: '2rem', color: '#1a365d' }}>Frequently Asked Questions</h2>
+      <section style={{ marginTop: '4rem', maxWidth: '800px', margin: '4rem auto 0', padding: '0 1rem' }}>
+        <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 4vw, 2rem)', marginBottom: '2rem', color: '#1a365d' }}>Frequently Asked Questions</h2>
         {[
           { q: 'Is this legally valid in Louisiana?', a: 'Yes! Our templates follow Louisiana state requirements and formatting guidelines.' },
           { q: 'Do I need a lawyer?', a: 'While we provide templates and guidance, complex cases may benefit from legal review. Our Premium plan includes a consultation.' },

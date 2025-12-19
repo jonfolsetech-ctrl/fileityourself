@@ -100,3 +100,69 @@ a:hover {
   border-left: 4px solid #ffc107;
   margin: 20px 0;
 }
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  main {
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 8px;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  .card ul, .card ol {
+    text-align: left;
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  .highlight {
+    text-align: left;
+  }
+
+  .button, button {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 16px auto;
+  }
+
+  ol, ul {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 90%;
+  }
+}
